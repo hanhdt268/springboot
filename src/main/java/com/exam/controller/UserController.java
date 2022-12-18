@@ -55,13 +55,4 @@ public class UserController {
     public void deleteUserById(@PathVariable("userId") Long userId) {
         this.userService.deleteById(userId);
     }
-
-    @GetMapping("/test/{name}")
-    public ResponseEntity<?> testControllerCmd(@PathVariable("name") String name) {
-        String s = "Hello World %s !!!";
-        String str = String.format(s, name);
-        System.out.println("a: " + str);
-
-        return ResponseEntity.ok(str);
-    }
 }
