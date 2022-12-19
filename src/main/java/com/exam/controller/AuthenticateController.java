@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 
 @RestController
+
 @CrossOrigin("*")
 public class AuthenticateController {
     @Autowired
@@ -62,7 +63,7 @@ public class AuthenticateController {
     //return the details of current user
     @GetMapping("/current-user")
     public User getCurrentUser(Principal principal) {
-        return (User) this.userDetailsServiceImpl.loadUserByUsername(principal.getName());
+        return ((User) this.userDetailsServiceImpl.loadUserByUsername(principal.getName()));
     }
 }
 
