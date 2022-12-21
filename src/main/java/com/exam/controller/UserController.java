@@ -5,6 +5,7 @@ import com.exam.model.User;
 import com.exam.model.UserRole;
 import com.exam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
 
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -59,6 +61,12 @@ public class UserController {
         this.userService.deleteById(userId);
     }
 
+
+    @PutMapping("/update")
+    public ResponseEntity<User> updateUser(@RequestBody User user) throws Exception {
+        User updateUser = userService.updateUser(user);
+        return new ResponseEntity<>(updateUser, HttpStatus.OK);
+    }
 //    @ExceptionHandler(UserFoundException.class)
 //    public ResponseEntity<?> exceptionHandler(UserFoundException ex) {
 //        return ResponseEntity.ok(ex);
