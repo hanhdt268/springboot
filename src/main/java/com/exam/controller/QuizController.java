@@ -35,14 +35,14 @@ public class QuizController {
     }
 
     //get quiz with id
-    @GetMapping("/{qid}")
-    public Quiz getQuizId(@PathVariable("qid") Long qid) {
-        return this.quizService.getQuiz(qid);
+    @GetMapping("/{qId}")
+    public Quiz getQuizId(@PathVariable("qId") Long qId) {
+        return this.quizService.getQuiz(qId);
     }
 
     //delete quiz
-    @DeleteMapping("{qid}")
-    public void deleteQuiz(@PathVariable("qid") Long qid) {
-        this.quizService.deleteQuiz(qid);
+    @DeleteMapping("{qId}")
+    public void deleteQuiz(@PathVariable("qId") Long qId) {
+        this.quizService.deleteQuiz(qId);
     }
 }
