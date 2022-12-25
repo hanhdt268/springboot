@@ -65,6 +65,12 @@ public class UserController {
     public ResponseEntity<User> updateUser(@RequestBody User user) throws Exception {
         return ResponseEntity.ok(this.userService.updateUser(user));
     }
+
+    //get user by id
+//    @GetMapping("/{id}")
+//    public ResponseEntity<?> getUsers(@PathVariable("id") Long id) {
+//        return ResponseEntity.ok(userService.getUsers(id));
+//    }
 //    @ExceptionHandler(UserFoundException.class)
 //    public ResponseEntity<?> exceptionHandler(UserFoundException ex) {
 //        return ResponseEntity.ok(ex);
