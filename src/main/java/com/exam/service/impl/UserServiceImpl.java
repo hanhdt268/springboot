@@ -48,6 +48,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User getUserById(Long userId) {
+        return this.userRepository.findById(userId).get();
+    }
+
+    @Override
     public User updateUser(User user) throws Exception {
         return userRepository.save(user);
     }

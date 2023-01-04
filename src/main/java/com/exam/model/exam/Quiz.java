@@ -20,6 +20,8 @@ public class Quiz {
 
     private String numberOfQuestion;
 
+    private String password;
+
     private Boolean active = false;
     //ad
     @ManyToOne(fetch = FetchType.EAGER)
@@ -73,6 +75,14 @@ public class Quiz {
         this.numberOfQuestion = numberOfQuestion;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public Boolean getActive() {
         return active;
     }
@@ -96,4 +106,5 @@ public class Quiz {
     public void setQuestions(Set<Question> questions) {
         this.questions = questions;
     }
+
 }

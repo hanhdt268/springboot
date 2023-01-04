@@ -5,6 +5,7 @@ import com.exam.model.User;
 import com.exam.model.UserRole;
 import com.exam.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -31,8 +32,6 @@ public class UserController {
         user.setProfile("https://www.bootdey.com/img/Content/avatar/avatar7.png");
         //encoding password with bCryptPasswordEncoder
         user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
-
-
         Set<UserRole> roles = new HashSet<>();
 
         Role role = new Role();
@@ -54,7 +53,6 @@ public class UserController {
     }
 
     //delete user by id
-
     @DeleteMapping("/{userId}")
     public void deleteUserById(@PathVariable("userId") Long userId) {
         this.userService.deleteById(userId);
@@ -63,8 +61,22 @@ public class UserController {
 
     @PutMapping("/update")
     public ResponseEntity<User> updateUser(@RequestBody User user) throws Exception {
-        return ResponseEntity.ok(this.userService.updateUser(user));
+        User y = this.userService.getUserById(user.getId());
+        if (y == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(y);
+        } else {
+            user.setUserRoles(y.getUserRoles());
+            user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
+            return ResponseEntity.ok(this.userService.updateUser(user));
+        }
     }
+
+    //get user by id
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable("id") Long id) {
+        return this.userService.getUserById(id);
+    }
+
 
     //get user by id
 //    @GetMapping("/{id}")

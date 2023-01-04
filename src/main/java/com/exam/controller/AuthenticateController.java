@@ -49,7 +49,6 @@ public class AuthenticateController {
     }
 
     private void authenticate(String username, String password) throws Exception {
-
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         } catch (DisabledException e) {
@@ -65,5 +64,7 @@ public class AuthenticateController {
     public User getCurrentUser(Principal principal) {
         return ((User) this.userDetailsServiceImpl.loadUserByUsername(principal.getName()));
     }
+
+    
 }
 
